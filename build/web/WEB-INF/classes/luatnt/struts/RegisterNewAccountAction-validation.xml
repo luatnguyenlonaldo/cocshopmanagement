@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC
+  		"-//Apache Struts//XWork Validator 1.0.3//EN"
+  		"http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<validators>
+    <field name="username">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>
+                Username is required!!!
+            </message>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="maxLength">20</param>
+            <param name="minLength">5</param>
+            <message>
+                Username must be string with 5-20 chars!!!
+            </message>
+        </field-validator>
+    </field>
+    
+    <field name="password">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>
+                Password is required!!!
+            </message>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="maxLength">20</param>
+            <param name="minLength">3</param>
+            <message>
+                Password must be string with 5-20 chars!!!
+            </message>
+        </field-validator>
+    </field>
+    
+    <field name="confirmPassword">
+        <field-validator type="fieldexpression">
+            <param name="expression">confirmPassword==password</param>
+            <message>
+                Confirm must match password!!!
+            </message>
+        </field-validator>
+    </field>
+    
+    <field name="fullName">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>
+                Full name is required!!!
+            </message>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="maxLength">20</param>
+            <param name="minLength">5</param>
+            <message>
+                Full name must be string with 5-30 chars!!!
+            </message>
+        </field-validator>
+    </field>
+    
+    <field name="address">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>
+                Address is required!!!
+            </message>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="maxLength">20</param>
+            <param name="minLength">5</param>
+            <message>
+                Address must be string with 5-50 chars!!!
+            </message>
+        </field-validator>
+    </field>
+    
+    <field name="phone">
+        <field-validator type="regex">
+            <param name="expression">\\d+{10,11}</param>
+            <message>
+                Phone number is required from 10 to 11 number!!!
+            </message>
+        </field-validator>
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>
+                Phone number is required!!!
+            </message>
+        </field-validator>
+    </field>
+</validators>

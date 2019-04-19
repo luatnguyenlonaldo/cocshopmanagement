@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC
+  		"-//Apache Struts//XWork Validator 1.0.3//EN"
+  		"http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<validators>
+    <field name="foodID">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>
+                FoodID is required!!!
+            </message>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="maxLength">10</param>
+            <param name="minLength">3</param>
+            <message>
+                FoodID must be string with 3-10 chars!!!
+            </message>
+        </field-validator>
+    </field>
+    
+    <field name="foodName">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>
+                Food name is required!!!
+            </message>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="maxLength">30</param>
+            <param name="minLength">3</param>
+            <message>
+                Food name must be string with 3-30 chars!!!
+            </message>
+        </field-validator>
+    </field>
+    
+    <field name="price">
+        <field-validator type="regex">
+            <param name="expression">[0-9]+([\.][0-9]{0,2})?</param>
+            <message>
+                Price is a float number!!!
+            </message>
+        </field-validator>
+        <field-validator type="double">
+            <param name="minInclusive">0.1</param>
+            <message>
+                Price must be bigger than 0!!!
+            </message>
+        </field-validator>
+    </field>
+    
+    <field name="type">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>
+                Type is required!!!
+            </message>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="maxLength">30</param>
+            <param name="minLength">3</param>
+            <message>
+                Type must be string with 3-10 chars!!!
+            </message>
+        </field-validator>
+    </field>
+    
+</validators>

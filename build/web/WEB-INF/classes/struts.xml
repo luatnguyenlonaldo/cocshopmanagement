@@ -1,0 +1,119 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+    <package name="default" extends="struts-default" namespace="/">
+        <action name="">
+            <result>login.jsp</result>
+        </action>
+        
+        <action name="tryAgain">
+            <result type="redirect">login.jsp</result>
+        </action>
+        
+        <action name="errorLogout">
+            <result type="redirect">login.jsp</result>
+        </action>
+        
+        <action name="backHomeCustomer">
+            <result type="redirect">customerSearch.jsp</result>
+        </action>
+        
+        <action name="logout" class="luatnt.struts.LogoutAction">
+            <result name="success" type="redirect">login.jsp</result>
+        </action>
+        
+        <action name="login" class="luatnt.struts.LoginAction">
+            <exception-mapping exception="Exception" result="fail"/>
+            <result name="staffSearch" type="redirect">staffSearch.jsp</result>
+            <result name="customerSearch" type="redirect">customerSearch.jsp</result>
+            <result name="fail" type="redirect">invalid.html</result>
+        </action>
+        
+        <action name="registerNewAccount" class="luatnt.struts.RegisterNewAccountAction">
+            <exception-mapping exception="java.sql.SQLException" result="input"/>
+            <result name="success" type="redirect">registerNewAccountSuccessfully.jsp</result>
+            <result name="fail" type="redirect">error.html</result>
+            <result name="input">registerNewAccount.jsp</result>
+        </action>
+        
+        <action name="searchByStaff" class="luatnt.struts.SearchByStaffAction">
+            <result name="success">staffSearch.jsp</result>
+        </action>
+        
+        <action name="searchByCustomer" class="luatnt.struts.SearchByCustomerAction">
+            <result name="success">customerSearch.jsp</result>
+        </action>
+        
+        <action name="delete" class="luatnt.struts.DeleteFoodByStaffAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">searchByStaff</param>
+                <param name="keyword">${lastSearchValue}</param>
+            </result>
+            <result name="fail" type="redirect">error.html</result>
+        </action>
+        
+        <action name="update" class="luatnt.struts.UpdateFoodByStaffAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">searchByStaff</param>
+                <param name="keyword">${lastSearchValue}</param>
+            </result>
+            <result name="fail">error.html</result>
+        </action>
+        
+        <action name="linkAddNewFood">
+            <result>addNewFoodByStaff.jsp</result>
+        </action>
+        
+        <action name="addNewFoodByStaff" class="luatnt.struts.AddNewFoodByStaffAction">
+            <exception-mapping exception="java.sql.SQLException" result="input"/>
+            <result name="success" type="redirect">addNewFoodByStaffSuccessfully.jsp</result>
+            <result name="fail">error.html</result>
+            <result name="input">addNewFoodByStaff.jsp</result>
+        </action>
+        
+        <action name="addToCart" class="luatnt.struts.AddToCartAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">searchByCustomer</param>
+                <param name="keyword">${lastSearchValue}</param>
+            </result>
+            <result name="fail">errorCustomer.html</result>
+        </action>
+        
+        <action name="addMore">
+            <result>customerSearch.jsp</result>
+        </action>
+        
+        <action name="removeCart" class="luatnt.struts.RemoveItemFromCartAction">
+            <result name="success">viewCart.jsp</result>
+        </action>
+        
+        <action name="checkout">
+            <result>checkout.jsp</result>
+        </action>
+        
+        <action name="backToCart">
+            <result>viewCart.jsp</result>
+        </action>
+        
+        <action name="confirmBuying" class="luatnt.struts.ConfirmOrderAction">
+            <result name="success" type="redirect">confirmOrder.jsp</result>
+            <result name="fail">error.html</result>
+        </action>
+        
+        <action name="finishBuying" class="luatnt.struts.FinishOrderAction">
+            <result name="success" type="redirect">buySuccess.jsp</result>
+        </action>
+        
+        <action name="cancelFinishBuying">
+            <result>checkout.jsp</result>
+        </action>
+        
+        <action name="exitCheckout" class="luatnt.struts.ExitCheckoutAction">
+            <result name="success">customerSearch.jsp</result>
+        </action>
+        
+    </package>
+</struts>
